@@ -28,6 +28,13 @@
             position: absolute;  /* Make button moveable */
             transition: all 0.3s ease;  /* Smooth transition for movement */
         }
+
+        /* Media query for mobile devices */
+        @media (max-width: 768px) {
+            #hoverButton {
+                cursor: default; /* Disable pointer on mobile */
+            }
+        }
     </style>
 </head>
 <body>
@@ -48,12 +55,16 @@
         // Add event listeners to the button
         const button = document.getElementById('hoverButton');
 
-        button.addEventListener('mouseover', function() {
-            const newPosition = getRandomPosition();
-            button.style.left = `${newPosition.x}px`;
-            button.style.top = `${newPosition.y}px`;
-        });
+        // Only enable jumping functionality on desktop
+        if (window.innerWidth > 768) {
+            button.addEventListener('mouseover', function() {
+                const newPosition = getRandomPosition();
+                button.style.left = `${newPosition.x}px`;
+                button.style.top = `${newPosition.y}px`;
+            });
+        }
     </script>
 
 </body>
 </html>
+
